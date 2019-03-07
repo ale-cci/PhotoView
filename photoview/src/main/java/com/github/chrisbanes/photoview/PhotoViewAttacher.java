@@ -94,6 +94,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
 
     private boolean mZoomEnabled = true;
     private ScaleType mScaleType = ScaleType.FIT_CENTER;
+	private boolean updateEnabled = true;
 
     private OnGestureListener onGestureListener = new OnGestureListener() {
         @Override
@@ -265,6 +266,9 @@ public class PhotoViewAttacher implements View.OnTouchListener,
         return mZoomEnabled;
     }
 
+	public void setUpdateEnabled(boolean status) {
+		updateEnabled = status;
+	}
     public RectF getDisplayRect() {
         checkMatrixBounds();
         return getDisplayRect(getDrawMatrix());
@@ -490,13 +494,14 @@ public class PhotoViewAttacher implements View.OnTouchListener,
     }
 
     public void update() {
-        if (mZoomEnabled) {
-            // Update the base matrix using the current drawable
-            updateBaseMatrix(mImageView.getDrawable());
-        } else {
-            // Reset the Matrix...
-            resetMatrix();
-        }
+		if (updateEnabled)
+			if (mZoomEnabled) {
+				// Update the base matrix using the current drawable
+				updateBaseMatrix(mImageView.getDrawable());
+			} else {
+				// Reset the Matrix...
+				resetMatrix();
+			}
     }
 
     /**
