@@ -250,6 +250,9 @@ public class PhotoView extends AppCompatImageView {
         attacher.setOnScaleChangeListener(onScaleChangedListener);
     }
 
+	public void setUpdateEnabled(boolean status) {
+		attacher.setUpdateEnabled(status);
+	}
     public void setOnSingleFlingListener(OnSingleFlingListener onSingleFlingListener) {
         attacher.setOnSingleFlingListener(onSingleFlingListener);
     }
